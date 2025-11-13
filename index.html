@@ -1,37 +1,289 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>個人網站骨架</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; max-width: 100%; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif; line-height: 1.6; }
-    img { max-width: 100%; height: auto; display: block; }
-    .container { width: 1920px; margin: 0 auto; padding: 16px; }
-    nav a { margin-right: 12px; text-decoration: none; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .col-12 { grid-column: span 12; }
-    @media (min-width: 768px) { .col-md-6 { grid-column: span 6; } }
-    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    /* ━━━━━━━━━━━━━━━━━━━
+       全站 CSS 基礎設定區（可擴充）
+       ━━━━━━━━━━━━━━━━━━━ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fafafa;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━
+       導覽列（Navigation）
+       ━━━━━━━━━━━━━━━━━━━ */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+    }
+
+    .nav-logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-link:hover {
+      opacity: 0.7;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━
+       首屏區（Hero Section）
+       ━━━━━━━━━━━━━━━━━━━ */
+    .section-hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1rem;
+      background-image: url('https://source.unsplash.com/1600x900/?nature,landscape');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+
+    .section-hero h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .section-hero p {
+      max-width: 500px;
+      font-size: 1rem;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━
+       關於我（About Section）
+       ━━━━━━━━━━━━━━━━━━━ */
+    .section-about {
+      padding: 4rem 1rem;
+      background-color: #fff;
+    }
+
+    .section-about .content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-about h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-about p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━
+       作品集（Portfolio Section）
+       ━━━━━━━━━━━━━━━━━━━ */
+    .section-portfolio {
+      padding: 4rem 1rem;
+      background-color: #f5f5f5;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .portfolio-item {
+      background-color: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: auto;
+    }
+
+    .portfolio-item .info {
+      padding: 1rem;
+    }
+
+    .portfolio-item .info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .portfolio-item .info p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━
+       聯絡我（Contact Section）
+       ━━━━━━━━━━━━━━━━━━━ */
+    .section-contact {
+      padding: 4rem 1rem;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .section-contact h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-contact p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━
+       頁尾（Footer）
+       ━━━━━━━━━━━━━━━━━━━ */
+    .footer {
+      padding: 2rem 1rem;
+      background-color: #222;
+      color: #ccc;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━
+       RWD 響應式設計
+       ━━━━━━━━━━━━━━━━━━━ */
+    @media (min-width: 768px) {
+      .section-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1440px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━
+       CSS 插槽（預留自訂樣式區）
+       ━━━━━━━━━━━━━━━━━━━ */
+    /* [CUSTOM_CSS_SLOT_START] */
+    /* 開發者可於此區新增樣式 */
+    /* [CUSTOM_CSS_SLOT_END] */
   </style>
 </head>
 <body>
-  <header class="container" role="banner">
-    <nav aria-label="主選單">
-      <a href="#about">關於我</a>
-      <a href="#projects">作品集</a>
-      <a href="https://example.com/blog">技術部落格</a>
-      <a href="mailto:me@example.com">聯絡我</a>
-    </nav>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <p>歡迎來到我的個人網站！這裡整理了學習紀錄、Side Project 與實作心得。</p>
-  </header>
 
-  <footer class="container" role="contentinfo">
-    <p>© 2025 My Portfolio · <a href="#">GitHub</a></p>
-    <img src="https://source.unsplash.com/600x200/?technology,abstract" alt="">
+  <!-- 導覽列區塊 -->
+  <nav class="nav">
+    <div class="nav-logo">我的網站</div>
+    <div class="nav-links">
+      <a href="#hero" class="nav-link">首頁</a>
+      <a href="#about" class="nav-link">關於我</a>
+      <a href="#portfolio" class="nav-link">作品集</a>
+      <a href="#contact" class="nav-link">聯絡我</a>
+    </div>
+  </nav>
+
+  <!-- 首屏區（Hero Section） -->
+  <section id="hero" class="section-hero">
+    <h1>歡迎來到我的個人網站</h1>
+    <p>這裡是我展示作品與分享想法的地方。</p>
+  </section>
+
+  <!-- 關於我區（About Section） -->
+  <section id="about" class="section-about">
+    <div class="content">
+      <h2>關於我</h2>
+      <p>這裡是自我介紹的文字插槽。你可以在此放上個人背景、技能或理念的簡述。</p>
+    </div>
+  </section>
+
+  <!-- 作品集區（Portfolio Section） -->
+  <section id="portfolio" class="section-portfolio">
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="https://source.unsplash.com/600x400/?design" alt="作品1">
+        <div class="info">
+          <h3>作品標題 1</h3>
+          <p>這裡是作品說明插槽。</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://source.unsplash.com/600x400/?code" alt="作品2">
+        <div class="info">
+          <h3>作品標題 2</h3>
+          <p>這裡是作品說明插槽。</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://source.unsplash.com/600x400/?art" alt="作品3">
+        <div class="info">
+          <h3>作品標題 3</h3>
+          <p>這裡是作品說明插槽。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 聯絡我區（Contact Section） -->
+  <section id="contact" class="section-contact">
+    <h2>聯絡我</h2>
+    <p>歡迎透過電子郵件或社群媒體聯絡我。</p>
+  </section>
+
+  <!-- 頁尾區（Footer） -->
+  <footer class="footer">
+    <p>© 2025 我的個人網站｜設計與製作：我自己</p>
   </footer>
+
+  <!-- HTML 插槽（預留自訂內容區） -->
+  <!-- [CUSTOM_HTML_SLOT_START] -->
+  <!-- 開發者可於此區新增區塊 -->
+  <!-- [CUSTOM_HTML_SLOT_END] -->
+
 </body>
 </html>
