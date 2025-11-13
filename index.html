@@ -7,7 +7,7 @@
   <title>個人網站骨架</title>
   <style>
     /* ━━━━━━━━━━━━━━━━━━━
-       全站 CSS 基礎設定區（可擴充）
+       CSS:BASE
        ━━━━━━━━━━━━━━━━━━━ */
     *, *::before, *::after {
       box-sizing: border-box;
@@ -33,41 +33,35 @@
       color: inherit;
     }
 
-    /* ━━━━━━━━━━━━━━━━━━━
-       導覽列（Navigation）
-       ━━━━━━━━━━━━━━━━━━━ */
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background-color: #fff;
-      border-bottom: 1px solid #ddd;
-      position: sticky;
-      top: 0;
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      margin: 0.5rem;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
-    .nav-logo {
-      font-weight: bold;
-      font-size: 1.2rem;
+    .btn-primary {
+      background-color: #0077cc;
+      color: #fff;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 1rem;
+    .btn-primary:hover {
+      background-color: #005fa3;
     }
 
-    .nav-link {
-      font-size: 0.9rem;
-      transition: opacity 0.2s ease;
+    .btn-secondary {
+      background-color: #eee;
+      color: #333;
     }
 
-    .nav-link:hover {
-      opacity: 0.7;
+    .btn-secondary:hover {
+      background-color: #ddd;
     }
 
     /* ━━━━━━━━━━━━━━━━━━━
-       首屏區（Hero Section）
+       CSS:HERO
        ━━━━━━━━━━━━━━━━━━━ */
     .section-hero {
       display: flex;
@@ -94,31 +88,68 @@
     }
 
     /* ━━━━━━━━━━━━━━━━━━━
-       關於我（About Section）
+       CSS:ABOUT
        ━━━━━━━━━━━━━━━━━━━ */
     .section-about {
       padding: 4rem 1rem;
       background-color: #fff;
     }
 
-    .section-about .content {
-      max-width: 800px;
+    .about-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 1000px;
       margin: 0 auto;
+      gap: 2rem;
+    }
+
+    .about-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .about-text h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
       text-align: center;
     }
 
-    .section-about h2 {
-      font-size: 1.5rem;
+    .about-text p {
+      font-size: 1rem;
+      color: #555;
       margin-bottom: 1rem;
     }
 
-    .section-about p {
-      font-size: 1rem;
-      color: #555;
+    .about-highlights {
+      list-style: disc;
+      margin-left: 1.5rem;
+      color: #444;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-image {
+      flex: 1;
+    }
+
+    .about-image img {
+      border-radius: 6px;
+      width: 100%;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .about-buttons {
+      text-align: center;
     }
 
     /* ━━━━━━━━━━━━━━━━━━━
-       作品集（Portfolio Section）
+       CSS:SKILLS
+       ━━━━━━━━━━━━━━━━━━━ */
+    /* 預留區 */
+
+    /* ━━━━━━━━━━━━━━━━━━━
+       CSS:PROJECTS
        ━━━━━━━━━━━━━━━━━━━ */
     .section-portfolio {
       padding: 4rem 1rem;
@@ -160,7 +191,7 @@
     }
 
     /* ━━━━━━━━━━━━━━━━━━━
-       聯絡我（Contact Section）
+       CSS:CONTACT
        ━━━━━━━━━━━━━━━━━━━ */
     .section-contact {
       padding: 4rem 1rem;
@@ -178,9 +209,6 @@
       color: #555;
     }
 
-    /* ━━━━━━━━━━━━━━━━━━━
-       頁尾（Footer）
-       ━━━━━━━━━━━━━━━━━━━ */
     .footer {
       padding: 2rem 1rem;
       background-color: #222;
@@ -190,7 +218,7 @@
     }
 
     /* ━━━━━━━━━━━━━━━━━━━
-       RWD 響應式設計
+       CSS:RWD
        ━━━━━━━━━━━━━━━━━━━ */
     @media (min-width: 768px) {
       .section-hero h1 {
@@ -200,6 +228,19 @@
       .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .about-container {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .about-text h2 {
+        text-align: left;
+      }
+
+      .about-buttons {
+        text-align: left;
+      }
     }
 
     @media (min-width: 1440px) {
@@ -207,61 +248,60 @@
         grid-template-columns: repeat(3, 1fr);
       }
     }
-
-    /* ━━━━━━━━━━━━━━━━━━━
-       CSS 插槽（預留自訂樣式區）
-       ━━━━━━━━━━━━━━━━━━━ */
-    /* [CUSTOM_CSS_SLOT_START] */
-    /* 開發者可於此區新增樣式 */
-    /* [CUSTOM_CSS_SLOT_END] */
   </style>
 </head>
 <body>
 
-  <!-- 導覽列區塊 -->
-  <nav class="nav">
-    <div class="nav-logo">我的網站</div>
-    <div class="nav-links">
-      <a href="#hero" class="nav-link">首頁</a>
-      <a href="#about" class="nav-link">關於我</a>
-      <a href="#portfolio" class="nav-link">作品集</a>
-      <a href="#contact" class="nav-link">聯絡我</a>
-    </div>
-  </nav>
-
-  <!-- 首屏區（Hero Section） -->
+  <!-- SECTION:HERO-START -->
   <section id="hero" class="section-hero">
     <h1>歡迎來到我的個人網站</h1>
-    <p>這裡是我展示作品與分享想法的地方。</p>
+    <p>集整過去的專案經歷與案件分享。</p>
   </section>
+  <!-- SECTION:HERO-END -->
 
-  <!-- 關於我區（About Section） -->
+  <!-- SECTION:ABOUT-START -->
   <section id="about" class="section-about">
-    <div class="content">
-      <h2>關於我</h2>
-      <p>這裡是自我介紹的文字插槽。你可以在此放上個人背景、技能或理念的簡述。</p>
+    <div class="about-container">
+      <div class="about-text">
+        <h2>關於我</h2>
+        <p>我是一位數位轉型顧問，我專注於協助企業導入與優化 CRM 系統，從售前行銷自動化、業務流程導入，到售後客戶服務體系打造，全方位提升客戶旅程體驗。</p>
+        <p>擅長盤點現況、重塑流程、資料整合與系統佈署，將行銷漏斗、銷售管理、客服營運以數據串接，協助企業建立可量化、可追蹤的成長模式。透過結合雲端技術、AI 分析與最佳實務，讓企業能更快掌握客戶需求、提升轉換率、強化忠誠度，實現真正的數位賦能與營運升級。</p>
+        <ul class="about-highlights">
+          <li>企業流程診斷與數據治理</li>
+          <li>銷售流程端至端的整合與導入能力</li>
+          <li>變革管理與使用者培訓推動能力</li>
+        </ul>
+        <div class="about-buttons">
+          <a href="#projects" class="btn btn-primary">查看作品集</a>
+          <a href="#contact" class="btn btn-secondary">聯絡我</a>
+        </div>
+      </div>
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="正在寫程式的工程師">
+      </div>
     </div>
   </section>
+  <!-- SECTION:ABOUT-END -->
 
-  <!-- 作品集區（Portfolio Section） -->
+  <!-- SECTION:PROJECTS-START -->
   <section id="portfolio" class="section-portfolio">
     <div class="portfolio-grid">
       <div class="portfolio-item">
-        <img src="https://source.unsplash.com/600x400/?design" alt="作品1">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="作品1">
         <div class="info">
           <h3>作品標題 1</h3>
           <p>這裡是作品說明插槽。</p>
         </div>
       </div>
       <div class="portfolio-item">
-        <img src="https://source.unsplash.com/600x400/?code" alt="作品2">
+        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="作品2">
         <div class="info">
           <h3>作品標題 2</h3>
           <p>這裡是作品說明插槽。</p>
         </div>
       </div>
       <div class="portfolio-item">
-        <img src="https://source.unsplash.com/600x400/?art" alt="作品3">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="作品3">
         <div class="info">
           <h3>作品標題 3</h3>
           <p>這裡是作品說明插槽。</p>
@@ -269,22 +309,18 @@
       </div>
     </div>
   </section>
+  <!-- SECTION:PROJECTS-END -->
 
-  <!-- 聯絡我區（Contact Section） -->
+  <!-- SECTION:CONTACT-START -->
   <section id="contact" class="section-contact">
     <h2>聯絡我</h2>
     <p>歡迎透過電子郵件或社群媒體聯絡我。</p>
   </section>
+  <!-- SECTION:CONTACT-END -->
 
-  <!-- 頁尾區（Footer） -->
   <footer class="footer">
     <p>© 2025 我的個人網站｜設計與製作：我自己</p>
   </footer>
-
-  <!-- HTML 插槽（預留自訂內容區） -->
-  <!-- [CUSTOM_HTML_SLOT_START] -->
-  <!-- 開發者可於此區新增區塊 -->
-  <!-- [CUSTOM_HTML_SLOT_END] -->
 
 </body>
 </html>
